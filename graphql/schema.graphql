@@ -8,27 +8,27 @@ scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date
 scalar DateTimeTz @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTimeTz")
 
 type Query {
-    users: [User!]! @paginate(defaultCount: 10)
+    users(first: Int!, page: Int): [User!]! @paginate
     user(id: ID @eq): User @find
     posts: [Post!]! @all
     post(id: Int! @eq): Post @find
 }
 
-type UserPaginator {
-  data: [User!]!
-  paginatorInfo: PaginatorInfo!
-}
+# type UserPaginator { 
+#   data: [User!]!
+#   paginatorInfo: PaginatorInfo!
+# }
 
-type PaginatorInfo {
-  count: Int!
-  currentPage: Int!
-  firstItem: Int
-  hasMorePages: Boolean!
-  lastItem: Int
-  lastPage: Int!
-  perPage: Int!
-  total: Int!
-}
+# type PaginatorInfo {
+#   count: Int!
+#   currentPage: Int!
+#   firstItem: Int
+#   hasMorePages: Boolean!
+#   lastItem: Int
+#   lastPage: Int!
+#   perPage: Int!
+#   total: Int!
+# }
 
 type User {
     id: ID!
@@ -36,7 +36,7 @@ type User {
     email: String!
     created_at: DateTime!
     updated_at: DateTime!
-    posts: [Post!]! @hasMany
+    #posts: [Post!]! @hasMany
 }
 
 type Post {
